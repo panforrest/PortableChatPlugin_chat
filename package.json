@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,18 @@
     "babel-preset-react": "^6.24.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "webpack": "^3.6.0"
-  }
+    "webpack": "^3.6.0",
+    "express": "latest",
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "debug": "latest",
+    "morgan": "latest",
+    "serve-favicon": "latest",
+    "client-sessions": "latest",
+    "dotenv": "latest",
+    "hjs": "latest",
+    "hogan-middleware": "latest",
+    "jsonwebtoken": "latest"
+  },
+  "server": true
 }
