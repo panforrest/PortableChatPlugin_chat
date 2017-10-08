@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Comments } from '../presentation'
+import { Comments, ToggleBar } from '../presentation'
 
 class Widget extends Component {
   constructor(){
@@ -22,23 +22,9 @@ class Widget extends Component {
       return <Comments />
 
     return(
-      <div onClick={this.toggleComments.bind(this)} style={styles.container}>
-        This is the Widget!
-        
-      </div>
+      <ToggleBar onToggle={this.toggleComments.bind(this)} />
+      
     )
-  }
-}
-
-const styles = {
-  container: {
-  	color:'#fff', 
-  	position:'fixed', 
-  	width:'320', 
-  	bottom:0, 
-  	right:0, 
-  	background:'#000',
-    padding:6
   }
 }
 

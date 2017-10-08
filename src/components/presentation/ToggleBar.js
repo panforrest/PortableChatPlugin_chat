@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 export default (props) => {   //NOT SURE WHY THIS LINE IS LIKE THIS?
   return(
-      <div style={style.container}>
-        This is Widget!
+      <div onClick={props.onToggle.bind(this)} style={style.container} >
+        This is ToggleBar!
       </div>
   )
 }
@@ -11,8 +11,11 @@ export default (props) => {   //NOT SURE WHY THIS LINE IS LIKE THIS?
 const style = {
   container: {
   	color:'#fff', 
-  	width:320, 
-  	padding:6, 
-  	background:'#000'
+  	position:'fixed', 
+  	width:'320', 
+  	bottom:0, 
+  	right:0, 
+  	background:'#000',
+    padding:6
   }
 }
