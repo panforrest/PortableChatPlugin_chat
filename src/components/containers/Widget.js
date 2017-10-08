@@ -14,6 +14,7 @@ class Widget extends Component {
     this.setState({
       showComments: !this.state.showComments
     })
+    console.log('toggle comments: '+this.state.showComments)
   }
 
   render(){
