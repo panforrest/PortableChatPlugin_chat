@@ -1,12 +1,29 @@
+            // <button onClick={this.submitComment.bind(this)}>Submit</button>
 import React, { Component } from 'react'
-import { Comments, ToggleBar } from '../presentation'
+import { Comment, ToggleBar } from '../presentation'
 
 class Widget extends Component {
   constructor(){
     super()
     this.state = {
-      showComments: false
+      showComments: false,
+      comment:''
     }
+  }
+
+  // updateText(event){
+  //   console.log('updateText: ' + event.target.value)
+  //   this.setState({
+  //     comment: event.target.value
+  //   })
+  // }
+
+  submitComment(event){
+    if (event.keyCode != 13)
+      return
+
+    // console.log('submitComment: ' + event.keyCode)  //NEED TO REMEMBER THIS
+    console.log('submitComment: ' + event.target.value)
   }
 
   toggleComments(){
@@ -18,9 +35,22 @@ class Widget extends Component {
   }
 
   render(){
+    // const comment = this.state.comment
+
+
     if (this.state.showComments == true)
       return (
         <div style={style.comments}>
+          <div>
+            <input onKeyDown={this.submitComment.bind(this)} style={style.input} type="text" placeholder="Enter Comment" />
+
+          </div>
+
+            <Comment />
+            <Comment />
+            <Comment />
+
+
           <ToggleBar onToggle={this.toggleComments.bind(this)} />
         </div>
 
@@ -38,11 +68,17 @@ const style = {
   comments: {
     zIndex:100,
     height:650,
-    width:320, 
+    width:320,     //NOT width:'320', 
     position:'fixed', 
     top:0, 
     right:0, 
     background:'red'
+  },
+  input: {
+    width:100+'%',
+    height:32,
+    border:'none',
+    padding:6
   }
 }
 

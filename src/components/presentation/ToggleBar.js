@@ -12,7 +12,7 @@ const style = {
   container: {
   	color:'#fff', 
   	position:'fixed', 
-  	width:'320', 
+  	width:320,     //NOT width:'320', 
   	bottom:0, 
   	right:0, 
   	background:'#000',

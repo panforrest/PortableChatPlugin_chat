@@ -1,9 +1,9 @@
-// import Comments from './Comments'
+import Comment from './Comment'
 import ToggleBar from './ToggleBar'
 
 export {
 
-  // Comments,
+  Comment,
   ToggleBar
 
 }
