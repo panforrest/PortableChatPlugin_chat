@@ -1,14 +1,37 @@
             // <button onClick={this.submitComment.bind(this)}>Submit</button>
 import React, { Component } from 'react'
 import { Comment, ToggleBar } from '../presentation'
+import firebase from 'firebase'
 
 class Widget extends Component {
   constructor(){
     super()
     this.state = {
       showComments: false,
-      comments:[]
+      comments:[],
+      firebase: null
     }
+  }
+
+  componentDidMount(){
+    const fbApp = firebase.initializeApp({
+      apiKey: "AIzaSyCLUqNMdqONu-fw6fAIFbYjSNTytTqDvJg",
+      authDomain: "chat-app-58a18.firebaseapp.com",
+      databaseURL: "https://chat-app-58a18.firebaseio.com",
+      projectId: "chat-app-58a18",
+      storageBucket: "chat-app-58a18.appspot.com",
+      messagingSenderId: "999072206574"
+    })
+
+    this.setState({
+      firebase: fbApp
+    })
+
+    fbApp.database().ref('/comments').on('value', (snapshot) => {
+      const data = snapshot.val()
+      console.log('COMMENTS UPDATED: '+JSON.stringify(data))
+    })
+
   }
 
   // updateText(event){
@@ -33,6 +56,8 @@ class Widget extends Component {
     
     
     let comments = Object.assign([], this.state.comments)
+    this.state.firebase.database().ref('/comments/'+comments.length).set(comment)
+
     comments.unshift(comment)
     console.log('submitComment: ' + JSON.stringify(comments))
     this.setState({
@@ -40,6 +65,7 @@ class Widget extends Component {
     })
 
     event.target.value = '' //clear out the input
+
 
   }
 
