@@ -7,7 +7,7 @@ class Widget extends Component {
     super()
     this.state = {
       showComments: false,
-      comment:''
+      comments:[]
     }
   }
 
@@ -23,7 +23,24 @@ class Widget extends Component {
       return
 
     // console.log('submitComment: ' + event.keyCode)  //NEED TO REMEMBER THIS
-    console.log('submitComment: ' + event.target.value)
+    // console.log('submitComment: ' + event.target.value)
+    const comment = {
+      text: event.target.value,
+      timestamp: Math.round(Date.now()/1000)
+    }
+
+    // console.log('submitComment: ' + JSON.stringify(comment))
+    
+    
+    let comments = Object.assign([], this.state.comments)
+    comments.unshift(comment)
+    console.log('submitComment: ' + JSON.stringify(comments))
+    this.setState({
+      comments: comments
+    })
+
+    event.target.value = '' //clear out the input
+
   }
 
   toggleComments(){
@@ -46,9 +63,12 @@ class Widget extends Component {
 
           </div>
 
-            <Comment />
-            <Comment />
-            <Comment />
+            { this.state.comments.map((comment, i) => {
+                return <Comment key={comment.timestamp} {...comment} />
+              })
+            }
+           
+            
 
 
           <ToggleBar onToggle={this.toggleComments.bind(this)} />
