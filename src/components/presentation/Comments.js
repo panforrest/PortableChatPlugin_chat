@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 export default (props) => {
   return(
     <div style={style.container}>
-      <div style={{width:320, padding:24, height:64, background:'#000'}}></div>
+      <div style={{color:'#fff', width:320, padding:6, background:'#000'}}>
+        This is Widget!
+      </div>
       Comments Component!
     </div>
   )
