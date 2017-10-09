@@ -56,19 +56,19 @@ class Widget extends Component {
       timestamp: Math.round(Date.now()/1000)
     }
 
-    // console.log('submitComment: ' + JSON.stringify(comment))
+    console.log('submitComment: ' + window.location.href)
     
     
-    let comments = Object.assign([], this.state.comments)
-    this.state.firebase.database().ref('/comments/'+comments.length).set(comment)
+    // let comments = Object.assign([], this.state.comments)
+    // this.state.firebase.database().ref('/comments/'+comments.length).set(comment)
 
-    comments.unshift(comment)
-    console.log('submitComment: ' + JSON.stringify(comments))
-    // this.setState({
-    //   comments: comments
-    // })
+    // comments.unshift(comment)
+    // console.log('submitComment: ' + JSON.stringify(comments))
+    // // this.setState({
+    // //   comments: comments
+    // // })
 
-    event.target.value = '' //clear out the input
+    // event.target.value = '' //clear out the input
 
 
   }
