@@ -30,6 +30,10 @@ class Widget extends Component {
     fbApp.database().ref('/comments').on('value', (snapshot) => {
       const data = snapshot.val()
       console.log('COMMENTS UPDATED: '+JSON.stringify(data))
+      //COMMENTS UPDATED: [{"text":"123","timestamp":1507506142}]
+      this.setState({
+        comments: data.reverse()
+      })
     })
 
   }
@@ -60,9 +64,9 @@ class Widget extends Component {
 
     comments.unshift(comment)
     console.log('submitComment: ' + JSON.stringify(comments))
-    this.setState({
-      comments: comments
-    })
+    // this.setState({
+    //   comments: comments
+    // })
 
     event.target.value = '' //clear out the input
 
@@ -112,13 +116,15 @@ class Widget extends Component {
 
 const style = {
   comments: {
-    zIndex:100,
-    height:650,
-    width:320,     //NOT width:'320', 
-    position:'fixed', 
-    top:0, 
-    right:0, 
-    background:'red'
+    zIndex: 100,
+    height: 650,
+    width: 320,
+    position: 'fixed',
+    top: 0,
+    right: 0,
+    background: 'red',
+    overflowY: 'scroll',
+    paddingBottom: 96
   },
   input: {
     width:100+'%',
