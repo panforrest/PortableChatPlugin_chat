@@ -114,14 +114,14 @@ class Widget extends Component {
             
 
 
-          <ToggleBar onToggle={this.toggleComments.bind(this)} />
+          <ToggleBar label="Hide Comments" onToggle={this.toggleComments.bind(this)} />
         </div>
 
       )
     
 
     return(
-      <ToggleBar onToggle={this.toggleComments.bind(this)} />
+      <ToggleBar label="Show Comments" onToggle={this.toggleComments.bind(this)} />
       
     )
   }

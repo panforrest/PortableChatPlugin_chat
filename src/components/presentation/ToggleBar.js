@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default (props) => {   //NOT SURE WHY THIS LINE IS LIKE THIS?
   return(
       <div onClick={props.onToggle.bind(this)} style={style.container} >
-         Comments
+         {props.label}
       </div>
   )
 }
@@ -16,6 +16,7 @@ const style = {
   	bottom:0, 
   	right:0, 
   	background:'#000',
-    padding:6
+    padding:6,
+    paddingLeft: 14
   }
 }
