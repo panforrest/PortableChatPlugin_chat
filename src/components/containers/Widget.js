@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { Comment, ToggleBar } from '../presentation'
 import firebase from 'firebase'
+import { Base64 } from 'js-base64';
 
 class Widget extends Component {
   constructor(){
@@ -27,9 +28,14 @@ class Widget extends Component {
       firebase: fbApp
     })
 
-    fbApp.database().ref('/comments').on('value', (snapshot) => {
+    const path = Base64.encode(window.location.href) + '/comments'
+
+    fbApp.database().ref(path).on('value', (snapshot) => {
+      if (snapshot == null)
+        return
+
       const data = snapshot.val()
-      console.log('COMMENTS UPDATED: '+JSON.stringify(data))
+      // console.log('COMMENTS UPDATED: '+JSON.stringify(data))
       //COMMENTS UPDATED: [{"text":"123","timestamp":1507506142}]
       this.setState({
         comments: data.reverse()
@@ -56,19 +62,23 @@ class Widget extends Component {
       timestamp: Math.round(Date.now()/1000)
     }
 
-    console.log('submitComment: ' + window.location.href)
+    const encoded = Base64.encode(window.location.href)
+    console.log('submitComment: ' + encoded)
+    console.log('DECODED: ' + Base64.decode(encoded))
     
     
-    // let comments = Object.assign([], this.state.comments)
-    // this.state.firebase.database().ref('/comments/'+comments.length).set(comment)
+    let comments = Object.assign([], this.state.comments)
+    const path = Base64.encode(window.location.href) + '/comments' + comments.length
+
+    this.state.firebase.database().ref(path).set(comment)
 
     // comments.unshift(comment)
-    // console.log('submitComment: ' + JSON.stringify(comments))
+    console.log('submitComment: ' + JSON.stringify(comments))
     // // this.setState({
     // //   comments: comments
     // // })
 
-    // event.target.value = '' //clear out the input
+    event.target.value = '' //clear out the input
 
 
   }

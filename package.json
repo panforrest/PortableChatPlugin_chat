@@ -24,6 +24,7 @@
     "firebase": "^4.5.0",
     "hjs": "latest",
     "hogan-middleware": "latest",
+    "js-base64": "^2.3.2",
     "jsonwebtoken": "latest",
     "morgan": "latest",
     "react": "^16.0.0",
