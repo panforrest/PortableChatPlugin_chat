@@ -51,6 +51,14 @@ class Widget extends Component {
   //   })
   // }
 
+  toggleComments(){
+    console.log('toggle comments: '+this.state.showComments)
+    this.setState({
+      showComments: !this.state.showComments
+    })
+    // console.log('toggle comments: '+this.state.showComments)
+  }
+
   submitComment(event){
     if (event.keyCode != 13)
       return
@@ -59,7 +67,8 @@ class Widget extends Component {
     // console.log('submitComment: ' + event.target.value)
     const comment = {
       text: event.target.value,
-      timestamp: Math.round(Date.now()/1000)
+      // timestamp: Math.round(Date.now()/1000)
+      timestamp: Date.now()
     }
 
     const encoded = Base64.encode(window.location.href)
@@ -68,7 +77,7 @@ class Widget extends Component {
     
     
     let comments = Object.assign([], this.state.comments)
-    const path = Base64.encode(window.location.href) + '/comments' + comments.length
+    const path = Base64.encode(window.location.href) + '/comments/' + comments.length //NOT '/comments'
 
     this.state.firebase.database().ref(path).set(comment)
 
@@ -83,13 +92,7 @@ class Widget extends Component {
 
   }
 
-  toggleComments(){
-    console.log('toggle comments: '+this.state.showComments)
-    this.setState({
-      showComments: !this.state.showComments
-    })
-    // console.log('toggle comments: '+this.state.showComments)
-  }
+
 
   render(){
     // const comment = this.state.comment
@@ -132,14 +135,16 @@ const style = {
     position: 'fixed',
     top: 0,
     right: 0,
-    background: 'red',
+    background: '#f1f9f5',
+    borderLeft: '1px solid #ddd',
     overflowY: 'scroll',
     paddingBottom: 96
   },
   input: {
     width:100+'%',
-    height:32,
+    height:36,
     border:'none',
+    padding:9,
     padding:6
   }
 }

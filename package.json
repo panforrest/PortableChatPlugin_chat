@@ -26,9 +26,12 @@
     "hogan-middleware": "latest",
     "js-base64": "^2.3.2",
     "jsonwebtoken": "latest",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
     "morgan": "latest",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-moment": "^0.6.5",
     "serve-favicon": "latest",
     "webpack": "^3.6.0"
   },
